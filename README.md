@@ -46,7 +46,7 @@ Now you can start using this wrapper by installing it via npm/yarn:
 What things you need to install the software and how to install them.
 
 ```
-Give examples
+node >= 18 
 ```
 
 ### Installing
