@@ -65,4 +65,4 @@ yarn dev
 
 ## Contributing <a name = "contributing"></a>
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Pull requests are welcome. This is small project we can make something good out of it.
