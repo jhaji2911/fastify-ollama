@@ -25,7 +25,7 @@ Steps to install `ollama`
                 a. `ollama run mistral:7b-instruct`
                 b. `ollama run deepseek-coder:6.7b`
 
-## Well, this is it for the ollama part.
+ Well, this is it for the ollama part.
 
 
 
