@@ -1,28 +1,68 @@
-# Getting Started with [Fastify-CLI](https://www.npmjs.com/package/fastify-cli)
-This project was bootstrapped with Fastify-CLI.
+# 
+# OLLAMA API Wrapper
 
-## Install all dependencies
+This is a simple fastify wrapper of the ollama API.
 
-### `yarn`
+## Table of Contents
+
+- [About](#about)
+- [Getting Started](#getting_started)
+- [Contributing](../CONTRIBUTING.md)
+
+## About <a name = "about"></a>
+
+This project is just wrapper, which calls the underlying  `ollama api` for getting data from existing models running in your local or hosted machines.
+
+ You need to install and run ollama api before using this wrapper. 
+
+ ## Usage <a name = "usage"></a>
+
+Steps to install `ollama`
+
+1. First download ollama from [here](https://ollama.com/download)
+2. once you have downloaded ollama, then proceed with downloading models and running them.
+3. In our case we have two models running : 
+                a. `ollama run mistral:7b-instruct`
+                b. `ollama run deepseek-coder:6.7b`
+
+## Well, this is it for the ollama part.
 
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `yarn dev`
 
-To start the app in dev mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Getting Started <a name = "getting_started"></a>
 
-### `yarn start`
+Now you can start using this wrapper by installing it via npm/yarn:
 
-For production mode
+1. just clone the repo and install dependencies.
+2. you can also view swagger documentation at `http://localhost:3000/docs`
 
-### `yarn test`
 
-Run the test cases.
+⚠️ Rate limitting is implemented on this wrapper, so that you don't blow of your systems, you can increase or remove it from in `app.ts`  file. 
 
-## Learn More
+### Prerequisites
 
-To learn Fastify, check out the [Fastify documentation](https://fastify.dev/docs/latest/).
+What things you need to install the software and how to install them.
+
+```
+Give examples
+```
+
+### Installing
+
+
+
+```
+yarn
+```
+
+And run it for local env
+
+```
+yarn dev
+```
+
+## Contributing <a name = "contributing"></a>
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
