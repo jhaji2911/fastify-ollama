@@ -7,7 +7,7 @@ This is a simple fastify wrapper of the ollama API.
 
 - [About](#about)
 - [Getting Started](#getting_started)
-- [Contributing](../CONTRIBUTING.md)
+- [Contributing](#contributing)
 
 ## About <a name = "about"></a>
 
