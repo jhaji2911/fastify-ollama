@@ -1,11 +1,11 @@
-import { mistral, ollama_endpoint } from "../../utils/constants";
+import { mistral_ai, ollama_endpoint } from "../../utils/constants";
 import { Ollama } from "@langchain/community/llms/ollama";
 import { FastifyPluginAsync } from "fastify";
 
 const mistralchain: FastifyPluginAsync = async (fastify) => {
     const ollama = new Ollama({
         baseUrl: ollama_endpoint, // Default value
-        model: mistral, 
+        model: mistral_ai, 
       });
   
       fastify.post("/",{

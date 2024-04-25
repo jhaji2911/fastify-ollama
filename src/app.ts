@@ -5,32 +5,35 @@ import fastifySwagger from '@fastify/swagger';
 import fastifyStatic from '@fastify/static';
 import fastifySwaggerUi from "@fastify/swagger-ui";
 import fastifyCors from '@fastify/cors';
-// const localtunnel = require('localtunnel');
+import fastifyMultipart from '@fastify/multipart';
 
 export interface AppOptions extends FastifyServerOptions, Partial<AutoloadPluginOptions> {
   // Add any additional options here
 }
 
-// Pass --options via CLI arguments in command to enable these options.
 const options: AppOptions = {
-  // Add any additional options here
-}
+  // ...other options
+};
 
 const app: FastifyPluginAsync<AppOptions> = async (
   fastify,
   opts
 ): Promise<void> => {
-  // Place here your custom code!
-  // Set up localtunnel for the app instance
-  // const tunnel = await localtunnel({ port: 3000, subdomain: 'myapp' });
-  // console.log(`App is available publicly at the URL: ${tunnel.url}`);
-
   // Register CORS middleware to fix CORS error
   fastify.register(fastifyCors, {
     origin: true, // Add localtunnel URL and reflect the request origin
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], // Allow these HTTP methods
   });
 
+  fastify.register(fastifyMultipart, {
+    attachFieldsToBody: true,
+    limits: {
+      files: 1, // limit to 1 file
+      fileSize: 1024 * 1024 * 5 // limit size to 5 MB
+    }
+  });
+
+ 
   const swaggerOptions = {
     swagger: {
         info: {
@@ -40,26 +43,26 @@ const app: FastifyPluginAsync<AppOptions> = async (
         },
         host: "localhost:3000", // Added port 3000 here
         schemes: ["http", "https"],
-        consumes: ["application/json"],
+        consumes: ["application/json", "multipart/form-data"],
         produces: ["application/json"],
         tags: [{ name: "Default", description: "Default" }],
     },
-};
+  };
 
-const swaggerUiOptions = {
-  routePrefix: "/docs",
-  exposeRoute: true,
-};
+  const swaggerUiOptions = {
+    routePrefix: "/docs",
+    exposeRoute: true,
+  };
 
-await fastify.register(import('@fastify/rate-limit'), {
-  max: 30,
-  timeWindow: '1 minute',
-})
-
+  await fastify.register(import('@fastify/rate-limit'), {
+    max: 30,
+    timeWindow: '1 minute',
+  });
 
   // Register Swagger and Swagger UI
   fastify.register(fastifySwagger, swaggerOptions);
   fastify.register(fastifySwaggerUi, swaggerUiOptions);
+  
   // Serve Swagger UI static files
   fastify.register(fastifyStatic, {
     root: join(__dirname, 'public'),
@@ -73,26 +76,29 @@ await fastify.register(import('@fastify/rate-limit'), {
       error.code = 'TOO_MANY_REQUESTS'
     }
     reply.send(error)
-  })
+  });
 
   // Do not touch the following lines
 
   // This loads all plugins defined in plugins
   // those should be support plugins that are reused
   // through your application
-  void fastify.register(AutoLoad, {
+  // Register ajvFilePlugin with fastify instance
+
+  // Register AutoLoad for plugins
+  await fastify.register(AutoLoad, {
     dir: join(__dirname, 'plugins'),
-    options: opts
-  })
+    options: opts,
+  });
 
   // This loads all plugins defined in routes
   // define your routes in one of these
-  void fastify.register(AutoLoad, {
+  await fastify.register(AutoLoad, {
     dir: join(__dirname, 'routes'),
     options: opts
-  })
+  });
 
 };
 
-export default app;
-export { app, options }
+export default  app;
+export { app, options };

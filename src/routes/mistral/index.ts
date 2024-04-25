@@ -1,6 +1,6 @@
 import { FastifyPluginAsync } from "fastify";
 import axios from 'axios';
-import { ollama_endpoint } from "../../utils/constants";
+import { ollama_endpoint, mistral_ai } from "../../utils/constants";
 
 const mistral: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
   fastify.post('/', {
@@ -10,7 +10,7 @@ const mistral: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
         required: ['prompt'],
         properties: {
           prompt: { type: 'string' },
-          model: { type: 'string', default: mistral},
+          model: { type: 'string', default: mistral_ai},
           stream: { type: 'boolean', default: false },
         }
       }

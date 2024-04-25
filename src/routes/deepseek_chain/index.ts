@@ -2,7 +2,7 @@ import { deepseek_coder, ollama_endpoint } from "../../utils/constants";
 import { Ollama } from "@langchain/community/llms/ollama";
 import { FastifyPluginAsync } from "fastify";
 
-const mistralchain: FastifyPluginAsync = async (fastify) => {
+const deepseek_chain: FastifyPluginAsync = async (fastify) => {
     const ollama = new Ollama({
         baseUrl: ollama_endpoint, // Default value
         model: deepseek_coder, 
@@ -36,4 +36,4 @@ const mistralchain: FastifyPluginAsync = async (fastify) => {
   });
 };
 
-export default mistralchain;
+export default deepseek_chain;
