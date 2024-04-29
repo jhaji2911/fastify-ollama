@@ -5,7 +5,23 @@ import fastifySwagger from '@fastify/swagger';
 import fastifyStatic from '@fastify/static';
 import fastifySwaggerUi from "@fastify/swagger-ui";
 import fastifyCors from '@fastify/cors';
-import fastifyMultipart from '@fastify/multipart';
+// import fastifyMultipart from '@fastify/multipart';
+// import Ajv from 'ajv';
+
+// const ajv = new Ajv();
+
+
+// // Add isFileType for file / multipart-form data validation
+//    ajv.addKeyword({
+//       keyword: 'isFile',
+//       compile: (_schema, parent, _it) => {
+//         parent.type = 'file'
+//         delete parent.isFile
+//         return () => true
+//       }
+//     })
+    
+
 
 export interface AppOptions extends FastifyServerOptions, Partial<AutoloadPluginOptions> {
   // Add any additional options here
@@ -25,14 +41,16 @@ const app: FastifyPluginAsync<AppOptions> = async (
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], // Allow these HTTP methods
   });
 
-  fastify.register(fastifyMultipart, {
-    attachFieldsToBody: true,
-    limits: {
-      files: 1, // limit to 1 file
-      fileSize: 1024 * 1024 * 5 // limit size to 5 MB
-    }
-  });
+  // fastify.register(fastifyMultipart, {
+  //   attachFieldsToBody: true,
+  //   limits: {
+  //     files: 1, // limit to 1 file
+  //     fileSize: 1024 * 1024 * 5 // limit size to 5 MB
+  //   }
+  // });
 
+  
+// fastify.addSchema((schema: any) => ajv.compile(schema))
  
   const swaggerOptions = {
     swagger: {
@@ -88,10 +106,10 @@ const app: FastifyPluginAsync<AppOptions> = async (
   // Register AutoLoad for plugins
   await fastify.register(AutoLoad, {
     dir: join(__dirname, 'plugins'),
-    options: opts,
+    options: opts
   });
-
-  // This loads all plugins defined in routes
+ 
+ // This loads all plugins defined in routes
   // define your routes in one of these
   await fastify.register(AutoLoad, {
     dir: join(__dirname, 'routes'),
