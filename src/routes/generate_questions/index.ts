@@ -3,7 +3,7 @@
 import { FastifyPluginAsync } from "fastify";
 import { PromptTemplate } from "langchain/prompts";
 import z from "zod";
-import { deepseek_coder, llama3_ai, mistral_ai } from "../../utils/constants";
+import { deepseek_coder } from "../../utils/constants";
 import { JsonOutputFunctionsParser } from "langchain/output_parsers";
 import zodToJsonSchema from "zod-to-json-schema";
 import { OllamaFunctions } from "langchain/experimental/chat_models/ollama_functions";

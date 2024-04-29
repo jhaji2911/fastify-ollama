@@ -5,7 +5,7 @@ import { PromptTemplate } from '@langchain/core/prompts';
 import { FastifyPluginAsync } from "fastify";
 import { OllamaFunctions } from 'langchain/experimental/chat_models/ollama_functions';
 import z from 'zod';
-import { deepseek_coder, llama3_ai, mistral_ai } from '../../utils/constants';
+import { deepseek_coder } from '../../utils/constants';
 import zodToJsonSchema from 'zod-to-json-schema';
 import { JsonOutputFunctionsParser } from 'langchain/output_parsers';
 

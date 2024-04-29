@@ -5,7 +5,7 @@ import { OllamaFunctions } from "langchain/experimental/chat_models/ollama_funct
 import { JsonOutputFunctionsParser } from "langchain/output_parsers";
 import { PromptTemplate } from "@langchain/core/prompts";
 import { FastifyPluginAsync } from "fastify";
-import { deepseek_coder, llama3_ai, mistral_ai } from "../../utils/constants";
+import { deepseek_coder } from "../../utils/constants";
 
 const extract_resume_json : FastifyPluginAsync = async (fastify) => {
 // Define a schema for the input data
