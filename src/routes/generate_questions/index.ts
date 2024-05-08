@@ -1,7 +1,7 @@
 // this will generate questions from the analyzed report of the candidate
 
 import { FastifyPluginAsync } from "fastify";
-import { PromptTemplate } from "langchain/prompts";
+import { PromptTemplate } from "@langchain/core/prompts";
 import z from "zod";
 import { deepseek_coder } from "../../utils/constants";
 import { JsonOutputFunctionsParser } from "langchain/output_parsers";

@@ -14,7 +14,7 @@ import { JsonOutputFunctionsParser } from 'langchain/output_parsers';
 const analyze: FastifyPluginAsync = async (fastify): Promise<void> => {
     
 const ANALYTICAL_TEMPLATE = `
- Extract and save the relevant information from both resumes and job descriptions using NLP (Natural Language Processing) techniques. Use a scoring system to determine how well-suited the candidate is based on their skills, education, experience etc
+ Extract and save the exact information from both resumes and job descriptions using NLP (Natural Language Processing) techniques. Use a scoring system to determine how well-suited the candidate is based on their skills, education, experience etc.
 
 resume: {input1}
 job description: {input2}
@@ -35,29 +35,24 @@ const schema = z.object({
         resume_location: z.string().describe(
             'Location mentioned in the resume'
         ),
-        // confidence_score: z.number().describe('Confidence score in location match'),
     }),
     skills: z.object({
         job_skills: z.array(z.string()).describe('Required skills mentioned in the job description'),
         candidate_skills: z.array(z.string()).describe('Skills mentioned in the resume'),
-        // confidence_score: z.number().describe('Confidence score in skills match'),
     }),
     education: z.object({
         job_education: z.string().describe(
             'Required education mentioned in the job description'
          ),
         candidate_education: z.string().describe('Education mentioned in the resume'),
-        // confidence_score: z.number().describe('Confidence score in education match'),
     }),
     yearsOfExperience: z.object({
         job_experience: z.number().describe('Number of years mentioned in job description'),
         resume_experience: z.number().describe('Number of years mentioned in resume'),
-        // confidence_score: z.number().describe('Confidence score in years of experience vs required years of experience')
     }),
     responsibilitiesTaken: z.object({
         job_responsibilities: z.array(z.string()).describe('Responsibilities mentioned in job description'),
-        resume_responsibilities: z.array(z.string()).describe('Responsibilities taken by the candidate mentioned in resume'),
-        // confidence_score: z.number().describe('Confidence score in responsibilities match')
+        resume_responsibilities: z.array(z.string()).describe('Responsibilities mentioned in resume by candidate(parsed from resume)'),
     }),
     domain: z.string().describe('domain of the role'),
     confidence: z.number().describe('confidence score based on the analysis')

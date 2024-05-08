@@ -1,0 +1,187 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "BB AI talks",
+    "description": "Talk with our AI agents",
+    "version": "1.0.0"
+  },
+  "definitions": {},
+  "paths": {
+    "/": {
+      "get": { "responses": { "200": { "description": "Default Response" } } }
+    },
+    "/analyze/": {
+      "post": {
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "compare resume vs description, pass stringified JSON of resume and job description",
+            "schema": {
+              "type": "object",
+              "description": "compare resume vs description, pass stringified JSON of resume and job description",
+              "title": "Resume vs Job Description Comparison API",
+              "required": ["resume", "job_description"],
+              "properties": {
+                "resume": { "type": "string" },
+                "job_description": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": { "200": { "description": "Default Response" } }
+      }
+    },
+    "/deepcoder/": {
+      "post": {
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "required": ["prompt"],
+              "properties": {
+                "prompt": { "type": "string" },
+                "model": {
+                  "type": "string",
+                  "default": "deepseek-coder:6.7b-instruct"
+                },
+                "stream": { "type": "boolean", "default": false }
+              }
+            }
+          }
+        ],
+        "responses": { "200": { "description": "Default Response" } }
+      }
+    },
+    "/deepseek_chain/": {
+      "post": {
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "required": ["prompt"],
+              "properties": { "prompt": { "type": "string" } }
+            }
+          }
+        ],
+        "responses": { "200": { "description": "Default Response" } }
+      }
+    },
+    "/extract_JD_json/": {
+      "post": {
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "required": ["prompt"],
+              "properties": { "prompt": { "type": "string" } }
+            }
+          }
+        ],
+        "responses": { "200": { "description": "Default Response" } }
+      }
+    },
+    "/extract_resume_json/": {
+      "post": {
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "required": ["prompt"],
+              "properties": { "prompt": { "type": "string" } }
+            }
+          }
+        ],
+        "responses": { "200": { "description": "Default Response" } }
+      }
+    },
+    "/generate_questions/": {
+      "post": {
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Generate questions based on the data from JSON file",
+            "schema": {
+              "type": "object",
+              "description": "Generate questions based on the data from JSON file",
+              "title": "Question generator",
+              "required": ["report"],
+              "properties": { "report": { "type": "string" } }
+            }
+          }
+        ],
+        "responses": { "200": { "description": "Default Response" } }
+      }
+    },
+    "/hello/": {
+      "get": { "responses": { "200": { "description": "Default Response" } } }
+    },
+    "/mistral_chain/": {
+      "post": {
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "required": ["prompt"],
+              "properties": { "prompt": { "type": "string" } }
+            }
+          }
+        ],
+        "responses": { "200": { "description": "Default Response" } }
+      }
+    },
+    "/recognize/": {
+      "post": {
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "required": ["imageBase64"],
+              "properties": { "imageBase64": { "type": "string" } }
+            }
+          }
+        ],
+        "responses": { "200": { "description": "Default Response" } }
+      }
+    },
+    "/mistral/": {
+      "post": {
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "required": ["prompt"],
+              "properties": {
+                "prompt": { "type": "string" },
+                "model": { "type": "string", "default": "mistral:7b-instruct" },
+                "stream": { "type": "boolean", "default": false }
+              }
+            }
+          }
+        ],
+        "responses": { "200": { "description": "Default Response" } }
+      }
+    }
+  },
+  "host": "localhost:3000",
+  "schemes": ["http", "https"],
+  "consumes": ["application/json", "multipart/form-data"],
+  "produces": ["application/json"],
+  "tags": [{ "name": "Default", "description": "Default" }]
+}

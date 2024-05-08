@@ -23,6 +23,7 @@ const schema = z.object({
         education: z.string().describe("The person's education"),
         domains: z.array(z.string()).describe("extract domains of the project in which the person has worked"),
         skills: z.array(z.string()).describe("The person's top three skills"),
+        responsibilities: z.array(z.string()).describe("Responsibilities and achievements"),
         experience: z.object({
             years: z.number(),
             company: z.string()
