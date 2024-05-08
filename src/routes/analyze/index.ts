@@ -14,7 +14,8 @@ import { JsonOutputFunctionsParser } from 'langchain/output_parsers';
 const analyze: FastifyPluginAsync = async (fastify): Promise<void> => {
     
 const ANALYTICAL_TEMPLATE = `
- Extract and save the exact information from both resumes and job descriptions using NLP (Natural Language Processing) techniques. Use a scoring system to determine how well-suited the candidate is based on their skills, education, experience etc.
+ Extract and save the exact information from both resumes and job descriptions using NLP (Natural Language Processing) techniques. 
+ Use a scoring system to determine how well-suited the candidate is based on their skills, education, experience etc.
 
 resume: {input1}
 job description: {input2}
